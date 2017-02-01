@@ -1,0 +1,120 @@
+﻿<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box">
+                    <h4 class="m-t-0 m-b-30 header-title"><b>បន្ថែមអ្នកប្រើប្រាស់ថ្មី</b></h4>
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <form class="form-horizontal group-border-dashed" action="/user/addnew" method="post">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">ឈ្មោះគណនី</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" required placeholder="បញ្ចូលឈ្មោះគណនី" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">អុីម៉ែល</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចូលអុីម៉ែល" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">ឈ្មោះ</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចលឈ្មោះ" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">ភេទ</label>
+                                    <div class="col-sm-3">
+                                        <select name="" id="" class="form-control">
+                                            <option value="">ជ្រើសរើស</option>
+                                            <option value="male">ប្រុស</option>
+                                            <option value="female">ស្រី</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">លេខសំងាត់</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចូលលេងសំងាត់" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">ផ្តៀងផ្តាត់លេខសំខាត់</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចូលផ្តៀងផ្តាត់លេខសំខាត់" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">កំនត់មុខងារ</label>
+                                    <div class="col-sm-3">
+                                        <select name="" id="" class="form-control">
+                                            <option value="">ជ្រើសរើស</option>
+                                            <option value="male">Admin</option>
+                                            <option value="female">Editor</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="submit" value="បង្កើតច្មី" name="" class=" btn btn-md​​​​​   btn-success " data-toggle="modal" data-target="#RoleModal">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12" style="padding-right:80px">
+                                    <input type="submit" value="រក្សារទុក" class=" btn btn-md btn-primary pull-right">
+                                </div>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="RoleModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">បង្កើរមុខងារ</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal group-border-dashed">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">មុខងារ</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="បញ្ចូលមុខងារ" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">ពិព័រនា</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="បញ្ចូលពិព័រនា" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">រក្សារទុក</button>
+            </div>
+        </div>
+
+    </div>
+</div>
