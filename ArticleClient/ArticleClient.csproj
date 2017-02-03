@@ -4351,9 +4351,15 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\AddNew.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\Shared\_LayoutIndex.cshtml" />
+    <Content Include="Views\Shared\_PartialTopBar.cshtml" />
+    <Content Include="Views\Shared\_PartialDashboardLeftSide.cshtml" />
+    <Content Include="Views\Shared\_PartialFooter.cshtml" />
+    <Content Include="Views\Shared\_PartialLeftSide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\css\App_LocalResources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -18,38 +18,44 @@
     <link href="../../assets/css/responsive.css" rel="stylesheet" type="text/css" />
     <script src="../../assets/js/modernizr.min.js"></script>
 
+    <style>
+        #content{
+            max-width:1000px!important;
+            margin:0 auto;
+        }
+    </style>
 </head>
-<body class="fixed-left" style="background-color: #ebeff2;">
+<body class="" style="background-color: #ebeff2;">
 
     <!-- Begin page -->
     <div id="wrapper">
         <!-- Top Bar Start -->
-        @Html.Partial("_PartialTopBar");
+        @Html.Partial("_PartialTopBar")
         <!-- Top Bar End -->
         <!-- ========== Left Sidebar Start ========== -->
-        @Html.Partial("_PartialDashboardLeftSide");
+        
         <!-- Left Sidebar End -->
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="content-page">
-            <!-- Start content -->
-            <div class="content">
-                <div class="container">
-
+        <!-- Start content -->
+        <div class="content" id="content">
+            @Html.Partial("_PartialLeftSide")
+            <div class="content-page">
+                <div class="content">
                     <!-- Page-Title -->
                     <div class="row">
                         @RenderBody()
                     </div>
+                </div>
+                
 
+                @Html.Partial("_PartialFooter")
+            </div> <!-- container -->
+            
 
-                </div> <!-- container -->
+        </div> <!-- content -->
 
-            </div> <!-- content -->
-
-            @Html.Partial("_PartialFooter");
-
-        </div>
 
     </div>
     <script>
