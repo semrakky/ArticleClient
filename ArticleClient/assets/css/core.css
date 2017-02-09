@@ -1190,7 +1190,8 @@ File: Topbar,Left-sidebar,Right-sidebar
   z-index: 2;
 }
 .side-menu.left {
-  background: #ffffff;
+    /*background: #ffffff;*/
+  background: #5b757be6;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 60px;
@@ -1262,12 +1263,13 @@ body.fixed-left .side-menu.left {
   color: #5fbeaa;
 }
 #sidebar-menu ul ul a {
-  color: #75798B;
+  color: #34d3eb;
   display: block;
   padding: 10px 20px 10px 65px;
 }
 #sidebar-menu ul ul a:hover {
-  color: #5fbeaa;
+  /*color: #5fbeaa;*/
+  color: #f9f1cf ;
 }
 #sidebar-menu ul ul a i {
   margin-right: 5px;
@@ -1284,7 +1286,8 @@ body.fixed-left .side-menu.left {
   color: #5fbeaa !important;
 }
 #sidebar-menu > ul > li > a {
-  color: #36404a;
+  /*color: #36404a;*/
+  color: #f4f8fb;
   display: block;
   padding: 12px 20px;
   margin: 4px 0px;
@@ -1384,13 +1387,15 @@ body.fixed-left .side-menu.left {
   padding: 15px 20px;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu > ul > li > a:hover {
-  background: #f4f8fb!important;
+  /*background: #f4f8fb!important;*/
+  background: #4c5667!important;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu > ul > li > a:active {
   background: #f4f8fb!important;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu > ul > li > a:focus {
-  background: #f4f8fb!important;
+  /*background: #f4f8fb!important;*/
+  background: #4c5667!important;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu > ul > li > a i {
   margin-right: 20px !important;
@@ -1411,7 +1416,8 @@ body.fixed-left .side-menu.left {
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > a {
   position: relative;
   width: 260px;
-  background: #f4f8fb;
+  /*background: #f4f8fb;*/
+  background: #4c5667;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > ul {
   display: block;
@@ -1420,7 +1426,8 @@ body.fixed-left .side-menu.left {
   width: 190px;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > ul a {
-  background: #ffffff;
+  /*background: #ffffff;*/
+  background: #4c5667;
   box-shadow: none;
   padding-left: 15px;
   position: relative;
