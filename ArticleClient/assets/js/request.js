@@ -1,8 +1,10 @@
-﻿var app = angular.module('myApp', []);
+﻿/// <reference path="request.js" />
+var app = angular.module('myApp', []);
 app.controller('myCtrl', function ($scope, $http) {
-
+   
         getAllUserRole();
         getAllUsers();
+        
     //get all users role
         function getAllUserRole() {
         $http({
@@ -129,10 +131,9 @@ app.controller('myCtrl', function ($scope, $http) {
 
             }
         }
-
-   
-      
-
-
+    //post user
+        $scope.savePost = function () {
+            alert(CKEDITOR.instances.editor1.getData());
+        }
 
 });

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "uploadPartial";
+    Layout = "~/Views/Shared/_LayoutBrowse.cshtml";
+}
+
+<span style="font-size:20px;">ជ្រើសរើសរូបភាព</span>
+<hr />
+@model IEnumerable<ArticleClient.Models.ImagesUrl>
+
+@foreach (var image in Model)
+{
+    <a href="#" class="returnImage" data-url="@Request.Url.GetLeftPart(UriPartial.Authority)@image.imgUrl">
+        <img src="@image.imgUrl" alt="Hejsan" id="#image" data-source="@image.imgUrl" width="100" height="100" />
+    </a>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".returnImage").click("click", function (e) {
+            var urlImage = $(this).attr("data-url");
+            alert(urlImage);
+            //This takes the data value and id of the editor and sends the data(i.e.,image url) back to the caller page
+            window.opener.updateValue("cke_76_textInput", urlImage);
+            window.close();
+        });
+    });
+</script>
+

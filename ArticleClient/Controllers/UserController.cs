@@ -25,5 +25,7 @@ namespace ArticleClient.Controllers
 
             return View();
         }
+
+       
 	}
 }
