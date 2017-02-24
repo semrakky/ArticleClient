@@ -1,27 +1,32 @@
 ﻿/// <reference path="request.js" />
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function ($scope, $http) {
-
-     $scope.base_url = "http://localhost:5530/post/addNew/";
-
         getAllUserRole();
         getAllUsers();
-        $scope.title_url = $scope.title;
+        getAllCategories();
+        getAllPosts();
     //get all users role
         function getAllUserRole() {
         $http({
             method: "GET",
-            url: "http://localhost:55550/api/UserRole",
+            url: "http://localhost:55550/api/UserRole/GetAllUserRole",
         }).then(function success(response) {
             $scope.userroles = response.data;
             console.log($scope.userroles);
         }, function error(response) {
 
         });
-    }
+        }
+    //get userrole by id
+        function getUserRole(id) {
+            $http.get("http://localhost:55550/api/UserRole/GetUserroleById/" + id)
+                .then(function success(response) {
+                    alert("success");
+                }, function error(response) { });
+        }
     //save user role
         $scope.saveUserrole = function () {
-        $http.post("http://localhost:55550/api/UserRole"
+            $http.post("http://localhost:55550/api/UserRole/PostUserrole"
              ,JSON.stringify({"id": 0, "name": $scope.role_name, "description": $scope.role_des }))
             .then(function success(response) {
                 alert("Success");
@@ -37,7 +42,7 @@ app.controller('myCtrl', function ($scope, $http) {
         function getAllUsers() {
         $http({
             method: "GET",
-            url: "http://localhost:55550/api/User"
+            url: "http://localhost:55550/api/User/GetAllUsers"
         }).then(function successs(response) {
             $scope.allUsers = response.data;
             console.log($scope.allUsers);
@@ -45,7 +50,7 @@ app.controller('myCtrl', function ($scope, $http) {
         }
     //save user
         $scope.saveUser = function () {
-            $http.post("http://localhost:55550/api/User",
+            $http.post("http://localhost:55550/api/User/PostUser",
                 JSON.stringify({
                     "name": $scope.user_account,
                     "email": $scope.user_email,
@@ -87,7 +92,7 @@ app.controller('myCtrl', function ($scope, $http) {
                             },
                 function (isConfirm) {
                     if (isConfirm) {
-                        $http.delete("http://localhost:55550/api/User/" + userid).then(function success(response) {
+                        $http.delete("http://localhost:55550/api/User/DeleteUserById" + userid).then(function success(response) {
                             swal("លុប!", "អ្នកប្រើប្រាស់ត្រូវបានលុប.", "success");
                              getAllUsers();
                             
@@ -111,7 +116,7 @@ app.controller('myCtrl', function ($scope, $http) {
             //user edit btn save
             $scope.saveUserupdate = function () {
                 alert($scope.role_id);
-                $http.put("http://localhost:55550/api/User",
+                $http.put("http://localhost:55550/api/User/PutUser",
                   JSON.stringify({
                       "id": element.user.id,
                       "name": $scope.user_account,
@@ -133,18 +138,52 @@ app.controller('myCtrl', function ($scope, $http) {
 
             }
         }
-
+    //get categories
+        function getAllCategories() {
+            $http.get("http://localhost:55550/api/Category/GetAllCategories").
+                then(function success(response) {
+                    $scope.categories = response.data;
+                   
+                }, function error(response) {
+                    console.log("Error" + response);
+                });
+      }
+    //save category
+        $scope.saveCat = function () {
+            $http.post("http://localhost:55550/api/Category/PostCategory",
+                 JSON.stringify({ "id": 0, "name": $scope.cat_name, "description": $scope.cat_des }))
+              .then(function success(respones) {
+                  swal("រក្សារទុក!", "ប្រភេទអត្ថបទត្រូវបានរក្សាទុក!.", "success");
+                  getAllCategories();
+                  $("#close").trigger('click');
+              }, function error(respones) { });
+      }
     //save post
         $scope.savePost = function () {
-            
-            var htmldata = CKEDITOR.instances.editor1.getData();
-            console.log(htmldata);
-
-          
-
-          
-            
+          var htmldata = CKEDITOR.instances.editor1.getData();
+            $http.post("http://localhost:55550/api/Post/PostArticle",
+               JSON.stringify({
+                   "id": 0,
+                   "title": $scope.title,
+                   "texts": htmldata,
+                   "image": "string",
+                   "author": $scope.author,
+                   "category_id": $scope.cat_id,
+                   "user_id": 1
+               })
+              ).then(function success(response) {
+                  alert("Success");
+              }, function error(response) {
+                  console.log(response);
+              });
+           
         }
-
-    
+    //get all post
+        function getAllPosts(){
+            $http.get("http://localhost:55550/api/Post/GetAllPosts")
+                .then(function success(response) {
+                    console.log(response.data);
+                    $scope.posts = response.data;
+                }, function error(response) {});
+      }
 });
