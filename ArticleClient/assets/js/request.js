@@ -1,10 +1,12 @@
 ﻿/// <reference path="request.js" />
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function ($scope, $http) {
-   
+
+     $scope.base_url = "http://localhost:5530/post/addNew/";
+
         getAllUserRole();
         getAllUsers();
-        
+        $scope.title_url = $scope.title;
     //get all users role
         function getAllUserRole() {
         $http({
@@ -131,9 +133,18 @@ app.controller('myCtrl', function ($scope, $http) {
 
             }
         }
-    //post user
+
+    //save post
         $scope.savePost = function () {
-            alert(CKEDITOR.instances.editor1.getData());
+            
+            var htmldata = CKEDITOR.instances.editor1.getData();
+            console.log(htmldata);
+
+          
+
+          
+            
         }
 
+    
 });
