@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageLogin.cshtml";
+}
+
+<div class="account-pages"></div>
+<div class="clearfix"></div>
+<div class="wrapper-page">
+    <div class=" card-box">
+        <div class="panel-heading">
+            <h3 class="text-center"> ចូលទៅកាន់គណនីយ <strong class="text-custom">Article</strong> </h3>
+        </div>
+
+
+        <div class="panel-body">
+            <form class="form-horizontal m-t-20" action="/Account/login" method="post">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" name="username" type="text" required="" placeholder="ឈ្មោះគណនីយ">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" name="password" type="password" required="" placeholder="លេខសំងាត់">
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <div class="checkbox checkbox-primary">
+                                <input id="checkbox-signup" type="checkbox">
+                                <label for="checkbox-signup">
+                                    ចងចាំ
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center m-t-40">
+                        <div class="col-xs-12">
+                       
+                            <button class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">ចូល</button>
+                        </div>
+                    </div>    
+                }
+
+                
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
