@@ -22,7 +22,10 @@ namespace ArticleClient.Controllers
 
         public ActionResult Profile()
         {
-
+            if (Session["user"] == null)
+            {
+                return Redirect("/Account");
+            }
             return View();
         }
 

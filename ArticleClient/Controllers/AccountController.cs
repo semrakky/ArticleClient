@@ -33,9 +33,6 @@ namespace ArticleClient.Controllers
             if (result.IsSuccessStatusCode)
             {
                 System.Diagnostics.Debug.WriteLine("Something...username="+username);
-                System.Diagnostics.Debug.WriteLine("Something...password=" + password);
-                System.Diagnostics.Debug.WriteLine("status code="+result.IsSuccessStatusCode);
-               
                 var readTask = result.Content.ReadAsAsync<usersession>();
                 
                 readTask.Wait();
@@ -45,6 +42,12 @@ namespace ArticleClient.Controllers
             }
 
             return Redirect("../Account");
+        }
+
+        public ActionResult logout()
+        {
+            Session.Clear();
+            return Redirect("/Account");
         }
 
     }

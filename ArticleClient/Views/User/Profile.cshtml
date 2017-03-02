@@ -1,4 +1,68 @@
-﻿<div class="content">
+﻿@using ArticleClient.Models
+@{
+    var user  = Session["user"] as usersession;
+    
+}
+<script>
+    $(document).ready(function () {
+        $("#gender").val('@user.Gender').change();
+        $("#role").val('@user.RoleName');
+    });
+    var app = angular.module('myApp');
+    app.controller('userCtrl', function ($scope, $http) {
+        $scope.updatepassword = function () {
+            if ($scope.currentpasswd == undefined || $scope.currentpasswd == "") {
+                swal("បញ្ចូលមិនគ្រប់", "សូមបញ្ចូលលេខសំងាត់", "error");
+                return false;
+            }
+            else if ($scope.newpasswd == undefined || $scope.newpasswd == "") {
+                swal("បញ្ចូលមិនគ្រប់", "សូមបញ្ចូលលេខសំងាត់ថ្មី", "error");
+                return false;
+            }
+            else if ($scope.newpasswd != $scope.confirm) {
+                swal("មិនត្រឹមត្រូវ", "លេខសំងាត់ថ្មីនិងលេខសំងាត់បញ្ជាក់ត្រូវដូចគ្នា", "error");
+                return false;
+            }
+            else {
+                try {
+
+                    swal({
+                        title: "ប្រាកដថាចង់កែប្រែលេខសំងាត់?",
+                        text: "សូមពិនិត្យអោយបានត្រឹមត្រូវ!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "កែប្រែ!",
+                        cancelButtonText: "ទេ, បោះបង់!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            $http.put('http://localhost:55550/api/User/updatePassword?userid=' + @user.Id + '&old=' + $scope.currentpasswd + '&newp=' + $scope.newpasswd)
+                            .then(function (response) {
+                                if (response.data != "Failed!")
+                                    swal("ជោគជ័យ", "ទិន្នន័យបានកែប្រែ", "success")
+                                else {
+                                    swal("បរាជ័យ", "មិនអាចកែរែប្បានប្បាន", "error")
+                                }
+                            });
+
+                        } else {
+                            swal("បោះបង់", "ទិន្នន័យរក្សាទុកដដែល", "error");
+                        }
+                    });
+
+                } catch (e) {
+
+                }
+            }
+        }
+    });
+
+</script>
+
+<div class="content" ng-controller="userCtrl">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -11,62 +75,63 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">ឈ្មោះគណនី</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" required placeholder="បញ្ចូលឈ្មោះគណនី" />
+                                        <input type="text" class="form-control" required placeholder="បញ្ចូលឈ្មោះគណនី" value="@user.Name"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">អុីម៉ែល</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចូលអុីម៉ែល" />
+                                        <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចូលអុីម៉ែល" value="@user.Email" />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">ឈ្មោះ</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចលឈ្មោះ" />
+                                        <input type="text" class="form-control" required placeholder="បញ្ចលឈ្មោះ" value="@user.Firstname"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">ភេទ</label>
                                     <div class="col-sm-3">
-                                        <select name="" id="" class="form-control">
+                                        <select name="" id="gender" class="form-control">
                                             <option value="">ជ្រើសរើស</option>
-                                            <option value="male">ប្រុស</option>
-                                            <option value="female">ស្រី</option>
+                                            <option value="m">ប្រុស</option>
+                                            <option value="f">ស្រី</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     <label class="col-sm-2 control-label">លេខសំងាត់</label>
                                     <div class="col-sm-9">
                                         <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចូលលេងសំងាត់" />
                                     </div>
-                                </div>
+                                </div>*@
 
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     <label class="col-sm-2 control-label">ផ្តៀងផ្តាត់លេខសំខាត់</label>
                                     <div class="col-sm-9">
                                         <input type="email" class="form-control" required parsley-type="email" placeholder="បញ្ចូលផ្តៀងផ្តាត់លេខសំខាត់" />
                                     </div>
-                                </div>
+                                </div>*@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">កំនត់មុខងារ</label>
                                     <div class="col-sm-3">
-                                        <select name="" id="" class="form-control">
+                                        <input type="text" class="form-control" required placeholder="បញ្ចូលផ្តៀងផ្តាត់លេខសំខាត់" value="@user.RoleName"/>
+                                        @*<select name="" id="" class="form-control" data->
                                             <option value="">ជ្រើសរើស</option>
                                             <option value="male">Admin</option>
                                             <option value="female">Editor</option>
-                                        </select>
+                                        </select>*@
                                     </div>
 
                                 </div>
 
                                 <div class="col-sm-12" style="padding-right:80px">
-                                    <input type="submit" value="រក្សារទុក" class=" btn btn-md btn-primary pull-right">
+                                    <input type="button" value="កែប្រែ" class="btn btn-md btn-primary pull-right"​ data-toggle="modal" data-target="#change_password">
                                 </div>
 
 
@@ -78,6 +143,7 @@
             </div>
         </div>
     </div>
+    @Html.Partial("_PartialChangePassword")
 </div>
 
 
