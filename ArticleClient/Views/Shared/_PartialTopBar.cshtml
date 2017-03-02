@@ -1,4 +1,6 @@
 ﻿<!-- Top Bar Start -->
+<link href="~/assets/css/style.css" rel="stylesheet" />
+
 <div class="topbar">
 
     <!-- LOGO -->
@@ -19,11 +21,17 @@
                     <span class="clearfix"></span>
                 </div>
 
-                <form role="search" class="navbar-left app-search pull-left hidden-xs">
+                @*<form role="search" class="navbar-left app-search pull-left hidden-xs">
                     <input type="text" placeholder="Search..." class="form-control">
                     <a href=""><i class="fa fa-search"></i></a>
-                </form>
-
+                </form>*@
+                <div class="navbar-left pull-left"  ng-controller="menuCtrl">
+                    <ul id="Menu_base">
+                        <li ng-repeat="menu in menuTree" ng-include="'menuTest'">
+                        </li>
+                    </ul>
+                </div>
+                
 
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <li class="dropdown hidden-xs">

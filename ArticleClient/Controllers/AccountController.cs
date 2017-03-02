@@ -47,5 +47,5 @@ namespace ArticleClient.Controllers
             return Redirect("../Account");
         }
 
-	}
+    }
 }
