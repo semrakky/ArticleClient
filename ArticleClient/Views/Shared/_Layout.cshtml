@@ -29,13 +29,15 @@
     <style>
         .modal .modal-dialog .modal-content {
           padding:10px;
+          
         }
+        .side-menu{background-color:#808080;}
     </style>
 </head>
 <body class="fixed-left" style="background-color: #ebeff2;" ng-app="myApp">
 
     <!-- Begin page -->
-    <div id="wrapper" ng-controller="myCtrl">
+    <div id="wrapper">
         <!-- Top Bar Start -->
         @Html.Partial("_PartialTopBar");
         <!-- Top Bar End -->
@@ -94,8 +96,9 @@
 
     <script src="../../assets/js/jquery.core.js"></script>
     <script src="../../assets/js/jquery.app.js"></script>
-   
 
+    <script src="~/assets/js/menu.service.js"></script>
+    <script src="~/assets/js/menu.ctrl.js"></script>
   
 
 </body>

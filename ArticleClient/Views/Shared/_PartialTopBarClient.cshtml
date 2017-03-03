@@ -4,14 +4,30 @@
         <li ng-repeat="menu in menu.submenu" ng-class="menu.submenu?'drop':''" ng-include="'menuTest'"></li>
     </ul>
 </script>
-
 <div ng-controller="menuCtrl">
-    <div class="mainmenu-area">
-        <nav class="primary-menu">
-            <ul class="clearfix">
-                <li class="drop" ng-repeat="menu in menuTree" ng-include="'menuTest'"></li>
-            </ul>
-        </nav>
-    </div>
+        <nav class="primary-menu navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">ប្រជុំពត៌មាន</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="clearfix nav navbar-nav">
+                        <li class="active"><a href="/home"><span class="glyphicon glyphicon-home"></span> ទំព័រដើម</a></li>
+                        <li class="drop" ng-repeat="menu in menuTree" ng-include="'menuTest'"></li>
+                    </ul>
+              
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> ចុះឈ្មោះ</a></li>
+                        <li><a href="/account"><span class="glyphicon glyphicon-log-in"></span> ចូលទៅកាន់</a></li>
+                    </ul>
+                </div>
+           </div>
+       </nav>
+
     
 </div>

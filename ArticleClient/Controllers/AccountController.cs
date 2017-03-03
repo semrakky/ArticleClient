@@ -36,9 +36,12 @@ namespace ArticleClient.Controllers
                 var readTask = result.Content.ReadAsAsync<usersession>();
                 
                 readTask.Wait();
-                
-                Session["user"] = readTask.Result;
+                usersession user = readTask.Result;
+                Session["user"] = user;
+                if (user.RoleName == "admin" || user.RoleName=="editor")
+                    return Redirect("/post");
                 return Redirect("../Home/");
+               
             }
 
             return Redirect("../Account");
