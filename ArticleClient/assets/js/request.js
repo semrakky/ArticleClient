@@ -1,10 +1,13 @@
 ﻿/// <reference path="request.js" />
 var app = angular.module('myApp', []);
-app.controller('myCtrl', function ($scope, $http) {
+app.controller('myCtrl', function ($scope, $http, $window, $location) {
+        $scope.urlImage = "";
         getAllUserRole();
         getAllUsers();
         getAllCategories();
         getAllPosts();
+        getAllPages();
+        
     //get all users role
         function getAllUserRole() {
         $http({
@@ -156,8 +159,81 @@ app.controller('myCtrl', function ($scope, $http) {
                   swal("រក្សារទុក!", "ប្រភេទអត្ថបទត្រូវបានរក្សាទុក!.", "success");
                   getAllCategories();
                   $("#close").trigger('click');
+                  clearCat();
               }, function error(respones) { });
-      }
+        }
+        $scope.saveCategory = function () {
+            if ($scope.cat_header == "កែប្រែប្រភេទនៃអត្ថបទ") {
+                $scope.saveEditCat($scope.cat_id);
+            } else if ($scope.cat_header = "បង្កើតថ្មី") {
+                $scope.saveCat();
+            }
+        }
+    //delete category
+        $scope.deleteCategory = function (id) {
+            var catid = id;
+            swal({
+                title: "ប្រាកដថាចង់លុបប្រភេទអត្ថបទនេះ?",
+                text: "ទិន្នន័យនឹងត្រូវបានបាត់បង់!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "បាទ, លុប!",
+                cancelButtonText: "ទេ, បោះបង់!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+               function (isConfirm) {
+                   if (isConfirm) {
+                       $http.delete("http://localhost:55550/api/Category/DeleteCategoryByID/" + catid).then(function success(response) {
+                           $scope.data = response.data.DATA;
+                          
+                           if ($scope.data == 0) {
+                               swal("បោះបង់!", "ប្រភេទអត្ថបទត្រូវបានប្រើប្រាស់", "error");
+                           } else {
+                               swal("លុប!", "ប្រភេទអត្ថបទត្រូវបានលុប.", "success");
+                               getAllCategories();
+                           }
+                          
+                       });
+
+                   } else {
+                       swal("បោះបង់", "ទិន្នន័យរក្សារទុកដដែល", "error");
+                   }
+               });
+        }
+    //click add new category and set title header
+        $scope.setCatHeader = function () {
+            $scope.cat_header = "បង្កើតថ្មី";
+        }
+    //get category by id and set title header
+        $scope.getCat = function (id) {
+            var catid = id;
+            $scope.cat_header = "កែប្រែប្រភេទនៃអត្ថបទ";
+            $http.get("http://localhost:55550/api/Category/GetCategoryById/"+catid)
+                .then(function success(response)
+                {
+                    $scope.cat_id = response.data.id;
+                    $scope.cat_name = response.data.name;
+                    $scope.cat_des = response.data.description;
+
+                }, function error() { });
+        }
+    //save update category
+        $scope.saveEditCat = function (id) {
+            $http.put("http://localhost:55550/api/Category/Put",
+                JSON.stringify({
+                    "id": id,
+                    "name": $scope.cat_name,
+                    "description": $scope.cat_des
+                }))
+                .then(function success(response) {
+                    getAllCategories();
+                    swal("ជោគជ័យ", "ប្រភេទអត្ថបទត្រូវបានកែប្រែ", "success")
+                    $("#close").trigger('click');
+                    clearCat();
+                }, function error() { });
+        }
     //save post
         $scope.savePost = function () {
           var htmldata = CKEDITOR.instances.editor1.getData();
@@ -166,13 +242,13 @@ app.controller('myCtrl', function ($scope, $http) {
                    "id": 0,
                    "title": $scope.title,
                    "texts": htmldata,
-                   "image": "string",
+                   "image": $scope.urlImage,
                    "author": $scope.author,
                    "category_id": $scope.cat_id,
                    "user_id": 1
                })
               ).then(function success(response) {
-                  alert("Success");
+                  swal("ជោគជ័យ", "អត្ថបទត្រូវបានរក្សារទុក", "success")
               }, function error(response) {
                   console.log(response);
               });
@@ -185,5 +261,186 @@ app.controller('myCtrl', function ($scope, $http) {
                     console.log(response.data);
                     $scope.posts = response.data;
                 }, function error(response) {});
-      }
+        }
+    //delete post
+        $scope.deletePost = function (id) {
+            var postid = id;
+            swal({
+                title: "ប្រាកដថាចង់លុបអត្ថបទនេះ?",
+                text: "ទិន្នន័យនឹងត្រូវបានបាត់បង់!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "បាទ, លុប!",
+                cancelButtonText: "ទេ, បោះបង់!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+              function (isConfirm) {
+                  if (isConfirm) {
+                      $http.delete("http://localhost:55550/api/Post/Delete/" + postid).then(function success(response) {
+                          swal("លុប!", "អត្ថបទត្រូវបានលុប", "success");
+                          getAllPosts();
+
+                      });
+
+                  } else {
+                      swal("បោះបង់", "ទិន្នន័យរក្សារទុកដដែល", "error");
+                  }
+              });
+        }
+    //edit post and redirect
+        $scope.editPost = function (id) {
+            $window.location.href = "/post/editPost?postId=" + id; 
+        }
+    //loaded  and get postid
+        $scope.onload = function () {
+            var currenturl = $location.absUrl();
+            var id = currenturl.split("=")[1];
+            $http.get("http://localhost:55550/api/Post/Get/" + id)
+                .then(function success(response) {
+                    $scope.postid = id;
+                    $scope.title = response.data.title;
+                    $scope.cate_id = response.data.cat_id+"";
+                    $scope.author = response.data.author;
+                    $scope.myeditor = response.data.texts;
+                },
+                 function error() { });
+        }
+    //save update post
+        $scope.updatePost = function (id) {
+            var htmldata = CKEDITOR.instances.myeditor.getData();
+            $http.put(
+                "http://localhost:55550/api/Post/Put",
+                 JSON.stringify({
+                     "id": id,
+                    "title": $scope.title,
+                    "texts": htmldata,
+                    "image": $scope.urlImage,
+                    "author": $scope.author,
+                    "category_id": $scope.cate_id,
+                    "user_id": 1
+            })
+               ).then(function success(response) {
+                   swal("ជោគជ័យ", "អត្ថបទត្រូវបានកែប្រែថ្មី", "success")
+                   $window.location.href = "/post";
+
+               }, function error(response) {
+                   console.log(response);
+               });
+
+        }
+    //getUrlImage from ckeditor 
+        $scope.getUrlImage = function (element) {
+            $scope.urlImage = element;
+        }
+    //clear category fields
+        function clearCat() {
+            $scope.cat_name = "";
+            $scope.cat_des = "";
+        } 
+    //create page
+        $scope.createPage = function () {
+            var contents = CKEDITOR.instances.editor1.getData();
+             var url = "www";
+             var userid = 1;
+             $http.post("http://localhost:55550/api/Page/Post",
+                 JSON.stringify({
+                     "url": url,
+                     "title":$scope.title,
+                     "contents": contents,
+                     "user_id": userid,
+                 }))
+                 .then(function success(response) {
+                     swal("ជោគជ័យ", "ទំព័រត្រូវបានបង្កើត", "success")
+                 }, function error(response) {
+
+                 });
+        }
+    //get all page 
+        function getAllPages() {
+            $http.get("http://localhost:55550/api/Page/Get")
+             .then(function success(response) {
+                 console.log(response.data);
+                 $scope.pages = response.data;
+             }, function error(response) { });
+        }
+    //edit page and redirect
+        $scope.editPage = function (id) {
+            $window.location.href = "/page/editPage?page_id=" + id;
+        }
+    //page load and get page by id
+        $scope.onpageLoad = function () {
+
+            var currenturl = $location.absUrl();
+            var id = currenturl.split("=")[1];
+            $http.get("http://localhost:55550/api/Page/Get/" + id)
+                .then(function success(response) {
+                    $scope.pageid = id;
+                    $scope.title = response.data.title;
+                    $scope.contents = response.data.contents;
+                },
+                 function error() { });
+        }
+    //delete page
+        $scope.deletePage = function (id) {
+            swal({
+                title: "ប្រាកដថាចង់លុបទំព័រនេះ?",
+                text: "ទិន្នន័យនឹងត្រូវបានបាត់បង់!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "បាទ, លុប!",
+                cancelButtonText: "ទេ, បោះបង់!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+             function (isConfirm) {
+                 if (isConfirm) {
+                     $http.delete("http://localhost:55550/api/Page/Delete/" + id).then(function success(response) {
+                         swal("លុប!", "ទំព័រត្រូវបានលុប", "success");
+                         getAllPages();
+
+                     });
+
+                 } else {
+                     swal("បោះបង់", "ទិន្នន័យរក្សារទុកដដែល", "error");
+                 }
+             });
+        }
+    //save update page
+        $scope.saveEditPage = function () {
+            var contents = CKEDITOR.instances.editor1.getData();
+           
+            var url = "http://localhost:55550/page";
+            $http.put("http://localhost:55550/api/Page/Put",
+               JSON.stringify({
+                   "id": $scope.pageid,
+                   "url":url,
+                   "title": $scope.title,
+                   "contents": contents,
+                   "user_id":1
+               }))
+               .then(function success(response) {
+                  
+                   swal({
+                       title: "ជោគជ័យ",
+                       text: "ប្រភេទអត្ថបទត្រូវបានកែប្រែ",
+                       confirmButtonText: "បាទ!"
+                   }, function (isConfirm) {
+                       if (isConfirm) {
+                           $window.location.href = "/page";
+                           getAllPages();
+                       }
+                   });
+                  
+                  
+               }, function error() {
+                   console.log(response);
+               });
+           
+
+        }
+        
+
 });

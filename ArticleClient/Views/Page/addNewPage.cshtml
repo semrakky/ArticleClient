@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Create New Page";
+}
+
+<div class="content" ng-controller="myCtrl">
+    <div class="container">
+
+        <div class="col-lg-12">
+            <label><h4 style="border:solid 2px blue; border-radius:5px; padding:10px">បង្កើតទំព័រថ្មី</h4></label>
+        </div>
+
+        <div class="col-lg-12" style="padding-bottom:10px;">
+            <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2">ដាក់ចំណងជើងទំព័រ:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="title" placeholder="បញ្ចូលចំណងជើងទំព័រ" class="form-control" />
+                    </div>
+                  </div>
+            </form>
+        </div>
+
+        <div class="col-lg-12">
+            <textarea id="editor1" name="editor1"></textarea>
+        </div>
+        <div class="col-lg-12" style="padding-top:10px">
+            <input type="button" class="btn btn-md btn-primary pull-right" ng-click="createPage()" value="រក្សារទុក" />
+        </div>
+
+        <script type="text/javascript">
+              CKEDITOR.replace('editor1', {
+              filebrowserBrowseUrl: '/post/uploadPartial',
+              filebrowserUploadUrl: '/post/uploadnow'
+       });
+
+
+      function updateValue(id, value) {
+      document.getElementById(id).value = value;
+       // get image in java script
+       angular.element(document.getElementById('wrapper')).scope().getUrlImage(value);
+
+      }
+        </script>
+    </div>
+
+
+</div>

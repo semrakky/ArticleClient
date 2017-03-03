@@ -42,6 +42,10 @@ namespace ArticleClient.Controllers
             }
         }
 
+        public ActionResult editPost() {
+            return View();
+        }
+
   
 
        

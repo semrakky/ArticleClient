@@ -1,5 +1,8 @@
-﻿<!-- Modal -->
-<div id="CatModal" class="modal fade" role="dialog">
+﻿<div ng-controller="myCtrl">
+
+
+<!-- Modal -->
+<div id="CatModal" class="modal fade" role="dialog" >
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -75,11 +78,18 @@
       filebrowserUploadUrl: '/post/uploadnow'
       });
 
+
       function updateValue(id, value) {
       document.getElementById(id).value = value;
+       // get image in java script 
+       angular.element(document.getElementById('wrapper')).scope().getUrlImage(value);
+
       }
+
+
     </script>
   </div>
 
  
+</div>
 </div>

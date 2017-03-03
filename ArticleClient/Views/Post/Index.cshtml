@@ -1,4 +1,4 @@
-﻿<div class="content">
+﻿<div class="content" ng-controller="myCtrl">
     <div class="container">
         <div class="row">
 
@@ -6,7 +6,7 @@
 
                 <div class="col-sm-12">
                     <div class="col-sm-12" style="padding-top:15px;">
-                        <h4 class="m-t-0 m-b-30 header-title">អត្ថបទទាំងអស់</h4>
+                        <label><h4 class="m-t-0 m-b-30 header-title" style="border:solid 2px blue; border-radius:5px; padding:10px">អត្ថបទទាំងអស់</h4></label>
                     </div>
                     <div class="col-sm-6 form-inline" style="padding-bottom:10px;">
                         <label class="control-label">បង្ហាញ</label>
@@ -18,7 +18,7 @@
                     <div class="col-sm-6">
                         <div class="form-inline pull-right">
                             <label class="control-label">ស្វែងរក</label>
-                            ​<input type="text" class="form-control" name="txtSearchUser" placeholder="ស្វែងរក" />
+                            ​<input type="text" ng-model="search" class="form-control" name="txtSearchUser" placeholder="ស្វែងរក" />
                         </div>
                     </div>
                 </div>
@@ -37,15 +37,15 @@
 
 
                         <tbody>
-                            <tr ng-repeat="post in posts">
+                            <tr ng-repeat="post in posts|filter:search">
                                 <td>{{post.title}}</td>
-                                <td>{{post.category_id}}</td>
+                                <td>{{post.category_name}}</td>
                                 <td>{{post.author}}</td>
                                 <td>{{post.post_date}}</td>
-                                <td>{{post.user_id}}</td>
+                                <td>{{post.username}}</td>
                                 <td>
-                                    ​​<input type="button"  value="លុប" class="btn btn-danger btn-sm">
-                                    <input type="button"  value="កែប្រែ" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#useredit">
+                                    ​​<input type="button"  value="លុប" class="btn btn-danger btn-sm"  ng-click="deletePost(post.id)">
+                                    <input type="button"  value="កែប្រែ" class="btn btn-primary btn-sm" ng-click="editPost(post.id)">
                                 </td>
                             </tr>
 
