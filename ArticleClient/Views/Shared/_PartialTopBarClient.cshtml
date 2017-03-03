@@ -1,5 +1,5 @@
 ﻿<script type="text/ng-template" id="menuTest">
-    <a href="#">{{ menu.title }}</a>
+    <a href="{{menu.page.url}}">{{ menu.title }}</a>
     <ul class="dropdown level2" ng-class="menu.submenu?'arrow-left':''" ng-if="menu.submenu">
         <li ng-repeat="menu in menu.submenu" ng-class="menu.submenu?'drop':''" ng-include="'menuTest'"></li>
     </ul>
