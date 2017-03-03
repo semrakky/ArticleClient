@@ -1,0 +1,17 @@
+﻿<script type="text/ng-template" id="menuTest">
+    <a href="#">{{ menu.title }}</a>
+    <ul class="dropdown level2" ng-class="menu.submenu?'arrow-left':''" ng-if="menu.submenu">
+        <li ng-repeat="menu in menu.submenu" ng-class="menu.submenu?'drop':''" ng-include="'menuTest'"></li>
+    </ul>
+</script>
+
+<div ng-controller="menuCtrl">
+    <div class="mainmenu-area">
+        <nav class="primary-menu">
+            <ul class="clearfix">
+                <li class="drop" ng-repeat="menu in menuTree" ng-include="'menuTest'"></li>
+            </ul>
+        </nav>
+    </div>
+    
+</div>

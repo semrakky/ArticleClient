@@ -1,38 +1,132 @@
-﻿@{
+﻿@using ArticleClient.Models;
+@{
     ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
 }
 
-<div class="container">
-    <div id="article" class="col-xs-12 col-sm-8 col-md-9">
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-4 ">
-                <img src="~/assets/images/big/img1.jpg" class="img-responsive" style="max-height:100px;" />
+<div id="body">
+
+    <div id="content">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8">
+                    <div class="row space">
+                        <div class="post">
+                            <div class="title"><b><a href="">ញ៉ាំ​ទឹក​ក្តៅ និង​ត្រជាក់ មួយណា​ល្អ​ជាង​? ចង់ដឹង​ទាល់តែ​មើល​សិន​!</a></b></div>
+                            <div class="imagebox">
+                                <div class="image">
+                                    <img src="~/assets/images/1_1983_.jpg">
+
+                                </div>
+                                <div class="descriptions">
+                                    <div class="detail">
+                                        នៅពេល​យើង​ញ៉ាំ​អាហារ​នៅ​ខាងក្រៅ​ផ្ទះ យើង​តែងតែ​ជ្រើស​រើសយក​ទឹក​មានទឹក​កក់​ទទួលទាន ជាពិសេស​ក្នុង​រដូវក្តៅ​តែម្តង​។ ប៉ុន្តែ​មាន​អ្នក​ខ្លះទៀត បែរជា​មិន​ចូលចិត្ត​ញ៉ាំ​ទឹក​ត្រជាក់​ទេ បែរជា​ចូលចិត្ត​ញ៉ាំ​ទឹក​ក្តៅ​ឧណ្ហៗ​ទៅវិញ​។ ដល់​ចឹ​ង​ទៅ តើ​វា​មាន​អ្វី​ខុសគ្នា​ទៅ​?
+                                    </div>
+
+                                    <div class="tag">
+                                        <div class="author"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>សិម រ៉ាក់គី</div>
+                                        <div class="category"><span class="glyphicon glyphicon-tag" aria-hidden="true">សុខភាព</div>
+                                        <div class="postdate"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></i>10-10-2017</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row space">
+                        <div class="post">
+                            <div class="title"><b><a href="">ញ៉ាំ​ទឹក​ក្តៅ និង​ត្រជាក់ មួយណា​ល្អ​ជាង​? ចង់ដឹង​ទាល់តែ​មើល​សិន​!</a></b></div>
+                            <div class="imagebox">
+                                <div class="image">
+                                    <img src="~/assets/images/images.jpg">
+                                </div>
+                                <div class="descriptions">
+                                    <div class="detail">
+                                        នៅពេល​យើង​ញ៉ាំ​អាហារ​នៅ​ខាងក្រៅ​ផ្ទះ យើង​តែងតែ​ជ្រើស​រើសយក​ទឹក​មានទឹក​កក់​ទទួលទាន ជាពិសេស​ក្នុង​រដូវក្តៅ​តែម្តង​។ ប៉ុន្តែ​មាន​អ្នក​ខ្លះទៀត បែរជា​មិន​ចូលចិត្ត​ញ៉ាំ​ទឹក​ត្រជាក់​ទេ បែរជា​ចូលចិត្ត​ញ៉ាំ​ទឹក​ក្តៅ​ឧណ្ហៗ​ទៅវិញ​។ ដល់​ចឹ​ង​ទៅ តើ​វា​មាន​អ្វី​ខុសគ្នា​ទៅ​?
+                                    </div>
+
+                                    <div class="tag">
+                                        <div class="author"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>សិម រ៉ាក់គី</div>
+                                        <div class="category"><span class="glyphicon glyphicon-tag" aria-hidden="true">សុខភាព</div>
+                                        <div class="postdate"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></i>10-10-2017</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row space">
+                        <div class="post">
+                            <div class="title"><b><a href="">ញ៉ាំ​ទឹក​ក្តៅ និង​ត្រជាក់ មួយណា​ល្អ​ជាង​? ចង់ដឹង​ទាល់តែ​មើល​សិន​!</a></b></div>
+                            <div class="imagebox">
+                                <div class="image">
+                                    <img src="~/assets/images/1_1983_.jpg" width="">
+                                </div>
+                                <div class="descriptions">
+                                    <div class="detail">
+                                        នៅពេល​យើង​ញ៉ាំ​អាហារ​នៅ​ខាងក្រៅ​ផ្ទះ យើង​តែងតែ​ជ្រើស​រើសយក​ទឹក​មានទឹក​កក់​ទទួលទាន ជាពិសេស​ក្នុង​រដូវក្តៅ​តែម្តង​។ ប៉ុន្តែ​មាន​អ្នក​ខ្លះទៀត បែរជា​មិន​ចូលចិត្ត​ញ៉ាំ​ទឹក​ត្រជាក់​ទេ បែរជា​ចូលចិត្ត​ញ៉ាំ​ទឹក​ក្តៅ​ឧណ្ហៗ​ទៅវិញ​។ ដល់​ចឹ​ង​ទៅ តើ​វា​មាន​អ្វី​ខុសគ្នា​ទៅ​?
+                                    </div>
+
+                                    <div class="tag">
+                                        <div class="author"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>សិម រ៉ាក់គី</div>
+                                        <div class="category"><span class="glyphicon glyphicon-tag" aria-hidden="true">សុខភាព</div>
+                                        <div class="postdate"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></i>10-10-2017</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <ul class="nav nav-pills nav-stacked category-box">
+                        <li class="active"><a href="#">ប្រភេទនៃអត្ថបទ</a></li>
+                        <li><a href="#">សុខភាព</a></li>
+                        <li><a href="#">កីឡា</a></li>
+                        <li><a href="#">សេដ្ឋកិច្ច</a></li>
+                    </ul>
+
+                    <div class="recently">
+                        <div class="recently-title">ពេញនិយម</div>
+                        <div class="items">
+                            <a href="">
+                                <div class="items-img">
+                                    <img src="~/assets/images/1_1983_.jpg">
+                                </div>
+                                <div class="items-title">ញ៉ាំ​ទឹក​ក្តៅ និង​ត្រជាក់ មួយណា​ល្អ​ជាង​?</div>
+                            </a>
+                        </div>
+                        <div class="items">
+                            <a href="">
+                                <div class="items-img">
+                                    <img src="~/assets/images/images.jpg">
+                                </div>
+                                <div class="items-title">ញ៉ាំ​ទឹក​ក្តៅ និង​ត្រជាក់ មួយណា​ល្អ​ជាង​?</div>
+                            </a>
+                        </div>
+                        <div class="items">
+                            <a href="">
+                                <div class="items-img">
+                                    <img src="~/assets/images/1_1983_.jpg">
+                                </div>
+                                <div class="items-title">ញ៉ាំ​ទឹក​ក្តៅ និង​ត្រជាក់ មួយណា​ល្អ​ជាង​?</div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-8">
-                <ul class="list-group">
-                    <li class="list-group-item-heading">title</li>
-                    <li class="list-group-item-text">this is article post to inform new information</li>
-                    <li class="list-group-item-info">post on Dec 03 2016</li>
-                    <li class="list-group-item-success">poster : chhunly</li>
-                </ul>
-            </div>
-            <hr />
+
         </div>
 
-    </div>
-    <div id="recent-post" class="col-xs-12 col-sm-4 col-md-3" style="background-color:red;">
-        <div>
-            this is recent
-        </div>
-        <div>
-            this is recent
-        </div>
-        <div>
-            this is recent
-        </div>
-    </div>
-    <div id="">
 
     </div>
-</div>
+
+
+</div><!--end div #id-->
