@@ -4,6 +4,19 @@
         <li ng-repeat="menu in menu.submenu" ng-class="menu.submenu?'drop':''" ng-include="'menuTest'"></li>
     </ul>
 </script>
+@using ArticleClient.Models;
+@{ 
+    var user = null as usersession;
+    try
+    {
+        user = Session["user"] as usersession;
+    }
+    catch (Exception)
+    {
+
+        throw;
+    }
+}
 <div ng-controller="menuCtrl">
         <nav class="primary-menu navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
@@ -22,8 +35,28 @@
                     </ul>
               
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> ចុះឈ្មោះ</a></li>
-                        <li><a href="/account"><span class="glyphicon glyphicon-log-in"></span> ចូលទៅកាន់</a></li>
+                        @{
+                            if (user == null){
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> ចុះឈ្មោះ</a></li>
+                                <li><a href="/account"><span class="glyphicon glyphicon-log-in"></span> ចូលទៅកាន់</a></li>
+                            }
+                            else{
+                            <li class="drop"><a href="/account"><span class="glyphicon glyphicon-log-in"></span>គណនី</a>
+                            <ul class="dropdown">
+                                @{
+                                    if (user.RoleName == "admin" || user.RoleName == "editor")
+                                    {
+                                        <li><a href="/post">ប្រជុំពត៌មាន</a></li>
+                                    }
+                                }
+                                <li><a href="/user/profile">អំពីខ្ញុំ</a></li>
+                                <li><a href="/account/logout">ចាកចេញ</a></li>
+                            </ul>
+                        </li>
+                            }
+                        }
+                        
+                        
                     </ul>
                 </div>
            </div>

@@ -11,15 +11,12 @@ namespace ArticleClient.Controllers
     {
         public ActionResult Index()
         {
-            if (Session["user"] == null)
-                return Redirect("../Account");
             return View();
         }
 
         public ActionResult About()
         {
-            if (Session["user"] == null)
-                return Redirect("../Account");
+         
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -27,8 +24,7 @@ namespace ArticleClient.Controllers
 
         public ActionResult Contact()
         {
-            if (Session["user"] == null)
-                return Redirect("../Account");
+          
             ViewBag.Message = "Your contact page.";
 
             return View();

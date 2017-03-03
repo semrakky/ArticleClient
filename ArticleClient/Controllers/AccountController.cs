@@ -50,7 +50,7 @@ namespace ArticleClient.Controllers
         public ActionResult logout()
         {
             Session.Clear();
-            return Redirect("/Account");
+            return Redirect("/Home/");
         }
 
     }
