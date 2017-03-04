@@ -1,4 +1,4 @@
-﻿<div ng-controller="myCtrl">
+﻿<div ng-controller="myCtrl" id="myCtrl">
 
 
 <!-- Modal -->
@@ -82,7 +82,7 @@
       function updateValue(id, value) {
       document.getElementById(id).value = value;
        // get image in java script 
-       angular.element(document.getElementById('wrapper')).scope().getUrlImage(value);
+      angular.element(document.getElementById('myCtrl')).scope().getUrlImage(value);
 
       }
 

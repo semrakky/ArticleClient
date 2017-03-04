@@ -236,7 +236,7 @@ app.controller('myCtrl', function ($scope, $http, $window, $location) {
         }
     //save post
         $scope.savePost = function () {
-          var htmldata = CKEDITOR.instances.editor1.getData();
+            var htmldata = CKEDITOR.instances.editor1.getData();
             $http.post("http://localhost:55550/api/Post/PostArticle",
                JSON.stringify({
                    "id": 0,
@@ -260,6 +260,7 @@ app.controller('myCtrl', function ($scope, $http, $window, $location) {
                 .then(function success(response) {
                     console.log(response.data);
                     $scope.posts = response.data;
+
                 }, function error(response) {});
         }
     //delete post
@@ -333,6 +334,7 @@ app.controller('myCtrl', function ($scope, $http, $window, $location) {
     //getUrlImage from ckeditor 
         $scope.getUrlImage = function (element) {
             $scope.urlImage = element;
+           
         }
     //clear category fields
         function clearCat() {

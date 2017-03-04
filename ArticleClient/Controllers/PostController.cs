@@ -20,7 +20,6 @@ namespace ArticleClient.Controllers
         {
             return View();
         }
-
         public ActionResult uploadPartial()
         {
             var appData = Server.MapPath("~/Images/uploads");

@@ -37,11 +37,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         @{
                             if (user == null){
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> ចុះឈ្មោះ</a></li>
-                                <li><a href="/account"><span class="glyphicon glyphicon-log-in"></span> ចូលទៅកាន់</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-edit"></span> ចុះឈ្មោះ</a></li>
+                                <li><a href="/account"><span class="glyphicon glyphicon-lock"></span> ចូលគណនី</a></li>
                             }
                             else{
-                            <li class="drop"><a href="/account"><span class="glyphicon glyphicon-log-in"></span>គណនី</a>
+                            <li class="drop"><a href="/user/profile"><span class="glyphicon glyphicon-log-in"></span> គណនី</a>
                             <ul class="dropdown">
                                 @{
                                     if (user.RoleName == "admin" || user.RoleName == "editor")
@@ -49,8 +49,8 @@
                                         <li><a href="/post">ប្រជុំពត៌មាន</a></li>
                                     }
                                 }
-                                <li><a href="/user/profile">អំពីខ្ញុំ</a></li>
-                                <li><a href="/account/logout">ចាកចេញ</a></li>
+                                <li><a href="/user/profile"><span class="glyphicon glyphicon-user"></span> អំពីខ្ញុំ</a></li>
+                                <li><a href="/account/logout"><span class="glyphicon glyphicon-log-out"></span> ចាកចេញ</a></li>
                             </ul>
                         </li>
                             }
