@@ -4,6 +4,7 @@ app.controller('menuCtrl', function ($scope, menuService) {
     $scope.selectedMenu = {};
     $scope.menuTree = [];
     $scope.mainMenu = {};
+    $scope.selectedPage = {};
     $scope.nullparent = { id: "" };
     $scope.tosave = {};
 
@@ -83,12 +84,12 @@ app.controller('menuCtrl', function ($scope, menuService) {
         
     }
     $scope.save = function () {
-        try{
+        try {
             if($scope.mainMenu.id!=undefined)
                 $scope.tosave.parent_id = $scope.mainMenu.id;
             if($scope.selectedPage.id!=undefined)
                 $scope.tosave.page_id = $scope.selectedPage.id;
-
+            
             $scope.tosave.title = $scope.menuname;
             $scope.tosave.user_id = $("#user_id").val();
 
