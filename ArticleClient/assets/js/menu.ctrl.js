@@ -86,9 +86,11 @@ app.controller('menuCtrl', function ($scope, menuService) {
         try{
             if($scope.mainMenu.id!=undefined)
                 $scope.tosave.parent_id = $scope.mainMenu.id;
+            if($scope.selectedPage.id!=undefined)
+                $scope.tosave.page_id = $scope.selectedPage.id;
+
             $scope.tosave.title = $scope.menuname;
-            $scope.tosave.page_id = $scope.selectedPage.id;
-            $scope.tosave.user_id = 3;
+            $scope.tosave.user_id = $("#user_id").val();
 
             menuService.post($scope.tosave).then(function (response) {
                 if (response == "Failed to saved") {
