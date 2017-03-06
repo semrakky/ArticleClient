@@ -51,7 +51,10 @@
     </style>
 </head>
 <body class="fixed-left" style="background-color: #ebeff2;" ng-app="myApp">
-    <input type="hidden" value="@user.Id" id="user_id"/>
+    @if (user != null)
+    {
+        <input type="hidden" value="@user.Id" id="user_id"/>
+    }
     <!-- Begin page -->
     <div id="wrapper">
         <!-- Top Bar Start -->
