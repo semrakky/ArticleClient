@@ -1,5 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
+@using ArticleClient.Models;
+@{ 
+    var user = null as usersession;
+    try
+    {
+        user = Session["user"] as usersession;
+    }
+    catch (Exception ex)
+    {
+
+        throw;
+    }
+}
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -24,6 +37,9 @@
     <script src="~/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
     
     <script src="../../assets/js/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+    </script>
     <script src="../../assets/js/request.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style>
@@ -35,7 +51,7 @@
     </style>
 </head>
 <body class="fixed-left" style="background-color: #ebeff2;" ng-app="myApp">
-
+    <input type="hidden" value="@user.Id" id="user_id"/>
     <!-- Begin page -->
     <div id="wrapper">
         <!-- Top Bar Start -->
