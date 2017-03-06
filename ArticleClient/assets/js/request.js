@@ -237,6 +237,7 @@ app.controller('myCtrl', function ($scope, $http, $window, $location) {
     //save post
         $scope.savePost = function () {
             var htmldata = CKEDITOR.instances.editor1.getData();
+            alert($scope.cat_id);
             $http.post("http://localhost:55550/api/Post/PostArticle",
                JSON.stringify({
                    "id": 0,
@@ -248,7 +249,17 @@ app.controller('myCtrl', function ($scope, $http, $window, $location) {
                    "user_id": 1
                })
               ).then(function success(response) {
-                  swal("ជោគជ័យ", "អត្ថបទត្រូវបានរក្សារទុក", "success")
+                 
+                  swal({
+                      title: "ជោគជ័យ",
+                      text: "អត្ថបទត្រូវបានរក្សារទុក",
+                      confirmButtonText: "បាទ!"
+                  }, function (isConfirm) {
+                      if (isConfirm) {
+                          $window.location.href = "/post";
+                          getAllPosts();
+                      }
+                  });
               }, function error(response) {
                   console.log(response);
               });

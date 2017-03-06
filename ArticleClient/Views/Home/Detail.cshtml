@@ -1,0 +1,54 @@
+﻿
+@using ArticleClient.Models;
+@{
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<div id="body" ng-controller="clientCtrl">
+
+    <div id="content" ng-init="onDetailRedirect()">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h4>{{post.title}}</h4>
+                    <br />
+                    <p>
+                        <span class="glyphicon glyphicon-user"></span> {{post.username}}
+                        <span class="glyphicon glyphicon-tag"></span> {{post.category_name}}
+                        <span class="glyphicon glyphicon-calendar"></span> {{post.post_date}}
+                    </p>
+                    <br />
+                      <div id="description"></div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="category-box">
+                        <div class="category-title">ប្រភេទនៃអត្ថបទ</div>
+                        <div class="cate" ng-click="">
+                            <div class="cate-item" ng-repeat="cat in categories">
+                                <a href="" ng-click="detailCat(cat.id)"><div class="cate-title"><span class="glyphicon glyphicon-tag">{{cat.name}}</div></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recently">
+                        <div class="recently-title">ព័ត៍មានមុនៗ</div>
+                        <div class="items" ng-repeat="post in oldPosts">
+                            <div ng-click="detail(post.id)">
+                                <div class="items-img">
+                                    <img src="{{post.image}}" />
+                                </div>
+                                <div class="items-title">{{post.title | limitTo:30}}{{post.title.length > 30 ? '...' : ''}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>

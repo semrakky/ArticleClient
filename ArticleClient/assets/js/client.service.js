@@ -17,4 +17,10 @@ app.service("clientService", function ($http) {
                return response.data;
            }, function () { });
     }
+
+    this.getPost = function () {
+        alert("getpostid called");
+        return $http.get("http://localhost:55550/api/Post/Get/")
+            .then(function (response) { return response.data; }, function () { });
+    }
 });

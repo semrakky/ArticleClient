@@ -38,7 +38,7 @@
 
                         <tbody>
                             <tr ng-repeat="post in posts|filter:search">
-                                <td>{{post.title}}</td>
+                                <td>{{post.title | limitTo:35}}{{post.title.length > 35 ? '...' : ''}}</td>
                                 <td>{{post.category_name}}</td>
                                 <td>{{post.author}}</td>
                                 <td>{{post.post_date}}</td>
@@ -48,8 +48,6 @@
                                     <input type="button"  value="កែប្រែ" class="btn btn-primary btn-sm" ng-click="editPost(post.id)">
                                 </td>
                             </tr>
-
-
                         </tbody>
                     </table>
                 </div>

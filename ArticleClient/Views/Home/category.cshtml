@@ -1,0 +1,68 @@
+﻿@using ArticleClient.Models;
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<div id="body" ng-controller="clientCtrl" ng-init="onRedirectCat()">
+
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <!--    items -->
+                        <div class="col-md-4" ng-repeat="post in cats">
+                            <div class="panel">
+                                <div class="panel-heading" style="background-color:teal;color:#fff;"><strong>{{post.author}}</strong></div>
+                                <div class="panel-body" style="background-color:#000;color:#fff; box-shadow:0 -12px 13px teal inset;">
+
+                                    <div class="boximg" ng-click="detail(post.id)">
+                                        <img src="{{post.image}}" class="img-responsive">
+                                        <span class="label label-danger date">{{post.post_date}}</span>
+                                    </div>
+
+                                    <br>
+                                    <p class="pull-left">{{post.title | limitTo:30}}{{post.title.length > 30 ? '...' : ''}}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--    items -->
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="category-box">
+                        <div class="category-title">ប្រភេទនៃអត្ថបទ</div>
+                        <div class="cate">
+                            <div class="cate-item" ng-repeat="cat in categories">
+                                <a href="" ng-click="detailCat(cat.id)"><div class="cate-title"><span class="glyphicon glyphicon-tag">{{cat.name}}</div></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="recently">
+                        <div class="recently-title">ព័ត៍មានមុនៗ</div>
+                        <div class="items" ng-repeat="post in oldPosts">
+                            <div ng-click="detail(post.id)">
+                                <div class="items-img">
+                                    <img src="{{post.image}}" />
+                                </div>
+                                <div class="items-title">{{post.title | limitTo:30}}{{post.title.length > 30 ? '...' : ''}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
